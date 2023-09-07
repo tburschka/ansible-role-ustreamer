@@ -85,27 +85,27 @@
 
 - name: collect Raspberry Pi OS specific required apt packages
   set_fact:
-    ustreamer_packages: "{{ ustreamer_packages }} + ['libjpeg9-dev']"
+    ustreamer_packages: "{{ ustreamer_packages + ['libjpeg9-dev'] }}"
   when: ustreamer_is_os_raspbian
 
 - name: collect Raspberry Pi OS and Debian specific required apt packages for audio
   set_fact:
-    ustreamer_packages: "{{ ustreamer_packages }} + ['libasound2-dev', 'libspeex-dev', 'libspeexdsp-dev', 'libopus-dev']"
+    ustreamer_packages: "{{ ustreamer_packages + ['libasound2-dev', 'libspeex-dev', 'libspeexdsp-dev', 'libopus-dev'] }}"
   when: ustreamer_install_janus and ustreamer_enable_audio_streaming
 
 - name: collect Debian-specific required apt packages
   set_fact:
-    ustreamer_packages: "{{ ustreamer_packages }} + ['libjpeg62-turbo-dev']"
+    ustreamer_packages: "{{ ustreamer_packages + ['libjpeg62-turbo-dev'] }}"
   when: ustreamer_is_os_debian
 
 - name: collect Ubuntu-specific required apt packages
   set_fact:
-    ustreamer_packages: "{{ ustreamer_packages }} + ['gcc', 'libjpeg8', 'libjpeg-dev', 'libjpeg-turbo8', 'libuuid1', 'libbsd0', 'make']"
+    ustreamer_packages: "{{ ustreamer_packages + ['gcc', 'libjpeg8', 'libjpeg-dev', 'libjpeg-turbo8', 'libuuid1', 'libbsd0', 'make'] }}"
   when: ansible_distribution == 'Ubuntu'
 
 - name: collect Janus WebRTC plugin specific required apt packages
   set_fact:
-    ustreamer_packages: "{{ ustreamer_packages }} + ['libglib2.0-dev', 'libjansson-dev']"
+    ustreamer_packages: "{{ ustreamer_packages + ['libglib2.0-dev', 'libjansson-dev'] }}"
   when: ustreamer_install_janus
 
 - name: install uStreamer pre-requisite packages
